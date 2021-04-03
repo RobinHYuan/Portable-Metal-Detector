@@ -4,6 +4,7 @@ OBJCPY = xc32-bin2hex
 ARCH = -mprocessor=32MX170F256B
 OBJ = Project2.o
 PORTN=$(shell type COMPORT.inc)
+HEADER = include/Project2.h
 
 Project2.elf: $(OBJ)
 	$(CC) $(ARCH) -o Project2.elf Project2.o -mips16 -DXPRJ_default=default \
