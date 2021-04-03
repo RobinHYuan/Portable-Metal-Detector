@@ -1,0 +1,4 @@
+cd C:\Users\circl\OneDrive\Desktop\ELEC-Y2T2\ELEC 291_Electrical Engineering Design Studio I\Project2\Code\Example Code\WAV_Sender
+computer_sender.exe -DCOM15 -w sample.wav
+computer_sender.exe -DCOM15 -v sample.wav
+computer_sender.exe -DCOM15 -p
