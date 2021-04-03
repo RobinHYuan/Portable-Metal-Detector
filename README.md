@@ -12,3 +12,11 @@ Jerry Shao, &nbsp;  84982321\
 Robin Yuan, 88011879\
 Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 
+------------
+
+### Breadboard Layouts:
+<img src="https://user-images.githubusercontent.com/68177491/113492219-d2ebd280-948a-11eb-9e7e-57ab6dcefc17.jpg" width="521" height="391"/>
+
+------------
+### Matou Sakura is the best girl:
+<img src="https://user-images.githubusercontent.com/68177491/113492318-6ae9bc00-948b-11eb-92c8-e79bb8f8cc76.jpg" width="640" height="905"/>
