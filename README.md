@@ -14,6 +14,11 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 
 ------------
 
+### Update History:
+**2021-04-03; 15:10:12; Saturday**
+- The system can now play any given wav file that is 8-bit, 22050Hz, monotone and samller than 4MB
+- A  header file is created to store all functions; the makefile is also modified to cope with the changes
+
 ### Breadboard Layouts:
 <img src="https://user-images.githubusercontent.com/68177491/113492219-d2ebd280-948a-11eb-9e7e-57ab6dcefc17.jpg" width="521" height="391"/>
 
