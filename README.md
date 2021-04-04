@@ -36,8 +36,8 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 - Auto-adjustable-Backlight LCD is working
 - 555 timer-cirucit is added to measure capacitance
 
-### Breadboard Layouts:
-<img src="https://user-images.githubusercontent.com/68177491/113523037-4d375800-955a-11eb-911d-fc3bf9331631.jpg" width="521" height="391"/>
+### Breadboard Layout:
+<img src="https://user-images.githubusercontent.com/68177491/113523138-d6e72580-955a-11eb-8dd0-a58f9840dbe7.jpg" width="521" height="391"/>
 
 ------------
 ### Matou Sakura is the best girl:
