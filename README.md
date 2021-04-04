@@ -27,14 +27,12 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 **2021-04-04; 02:31:23; Sunday**
 - Frequency detector circuit works
 
-### NOTE:
-So far, I found out that the following pins seem vacant:\
-RB2, RB3, RA2, RA3, RB4, RA4 || RB15, RB13, RB12, RB10\
-(I think RB6 is used for the period functions after reading thru it so I excluded it from the list)
+**2021-04-04; 03:15:40; Sunday**
+- LCD is working
 
 
 ### Breadboard Layouts:
-<img src="https://user-images.githubusercontent.com/68177491/113504639-3b1fd000-94ee-11eb-980f-e44797550c80.jpg" width="521" height="391"/>
+<img src="https://user-images.githubusercontent.com/68177491/113505509-29d9c200-94f4-11eb-8269-3bf4ce035590.jpg" width="521" height="391"/>
 
 ------------
 ### Matou Sakura is the best girl:
