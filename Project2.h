@@ -23,6 +23,7 @@
 #pragma config FPLLODIV = DIV_2     // Divide After PLL (now 40 MHz) see figure 8.1 in datasheet for more info
 #pragma config FWDTEN = OFF         // Watchdog Timer Disabled
 #pragma config FPBDIV = DIV_1       // PBCLK = SYCLK
+#pragma config FSOSCEN = OFF
 
 // Defines
 #define SYSCLK 40000000L
