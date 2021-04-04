@@ -13,7 +13,12 @@ Robin Yuan, 88011879\
 Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 
 ------------
+### Features List:
+- [ ]  Inductance and Capacitance Meter
+- [ ]  Auto-adjustable-Backlight LCD
+- [ ]  Prototype Board
 
+------------
 ### Update History:
 **2021-04-03; 15:10:12; Saturday**
 - The system can now play any given wav file that is 8-bit, 22050Hz, monotone and samller than 4MB
