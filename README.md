@@ -14,9 +14,11 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 
 ------------
 ### Features List:
-- [ ]  Inductance and Capacitance Meter
-- [ ]  Auto-adjustable-Backlight LCD
-- [ ]  Prototype Board
+- [ ] Inductance and Capacitance Meter
+
+- [x] Auto-adjustable-Backlight LCD
+
+- [ ] Prototype Board
 
 ------------
 ### Update History:
@@ -30,9 +32,12 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 **2021-04-04; 03:15:40; Sunday**
 - LCD is working
 
+**2021-04-04; 15:28:27; Sunday**
+- Auto-adjustable-Backlight LCD is working
+- 555 timer-cirucit is added to measure capacitance
 
 ### Breadboard Layouts:
-<img src="https://user-images.githubusercontent.com/68177491/113505509-29d9c200-94f4-11eb-8269-3bf4ce035590.jpg" width="521" height="391"/>
+<img src="https://user-images.githubusercontent.com/68177491/113523037-4d375800-955a-11eb-911d-fc3bf9331631.jpg" width="521" height="391"/>
 
 ------------
 ### Matou Sakura is the best girl:
