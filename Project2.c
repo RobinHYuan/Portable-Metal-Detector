@@ -17,7 +17,7 @@ int main()
     unsigned int j, n;
     unsigned long start, nbytes;
     unsigned short crc;
-
+	char buffer [16];
 
 	long int count;
 	float T, f;
@@ -31,10 +31,6 @@ int main()
     CNPUB |= (1<<5);   // Enable pull-up resistor for RB5
  
 	waitms(500);
-	printf("Period measurement using the core timer free running counter.\r\n"
-	      "Connect signal to RB5 (pin 14).\r\n");
-
-
 	TRISBbits.TRISB6 = 0;
 	LATBbits.LATB6 = 0;	
 	INTCONbits.MVEC = 1;
@@ -49,11 +45,12 @@ int main()
 	
     LCD_4BIT();
  	waitms(1000);
- 	LCDprint("TEST",2,1);
+ 	
 	while(1)
 	{	
-		LCDprint("TEST",1,1);
-	
+		LCDprint("Frequency:",1,1);
+		waitms(10);
+		
 		count=GetPeriod(100);
 		if(count>0)
 		{
@@ -67,8 +64,9 @@ int main()
 			printf("NO SIGNAL                     \r");
 		}
 		waitms(200);
-  
-
+		
+  		sprintf(buffer,"%.1f Hz",f);
+		LCDprint(buffer,2,1);
 
 		c=uart_getc();
 		if(c=='#')

@@ -7,8 +7,8 @@
 // LCD PIN Assignments: 
 // Note: All LCD functions are located after line 400 
 //==================================================
-#define LCD_RS  LATBbits.LATB12
-#define LCD_RW  LATBbits.LATB13
+#define LCD_RS  LATBbits.LATB13
+#define LCD_RW  LATBbits.LATB12
 #define LCD_E   LATBbits.LATB10
 
 #define LCD_D4  LATAbits.LATA2
@@ -24,7 +24,6 @@
 #pragma config FWDTEN = OFF         // Watchdog Timer Disabled
 #pragma config FPBDIV = DIV_1       // PBCLK = SYCLK
 #pragma config FSOSCEN = OFF
-
 // Defines
 #define SYSCLK 40000000L
 #define DEF_FREQ 22050L
