@@ -18,8 +18,22 @@ int main()
     unsigned long start, nbytes;
     unsigned short crc;
 
-	DDPCON = 0;
+
+	long int count;
+	float T, f;
+	
 	CFGCON = 0;
+  
+    UART2Configure(115200);  // Configure UART2 for a baud rate of 115200
+    
+    ANSELB &= ~(1<<5); // Set RB5 as a digital I/O
+    TRISB |= (1<<5);   // configure pin RB5 as input
+    CNPUB |= (1<<5);   // Enable pull-up resistor for RB5
+ 
+	waitms(500);
+	printf("Period measurement using the core timer free running counter.\r\n"
+	      "Connect signal to RB5 (pin 14).\r\n");
+
 
 	TRISBbits.TRISB6 = 0;
 	LATBbits.LATB6 = 0;	
@@ -27,15 +41,35 @@ int main()
 	
 	Init_pwm(); // pwm output used to implement DAC
 	SetupTimer1(); // The ISR for this timer playsback the sound
-    UART2Configure(115200);  // Configure UART2 for a baud rate of 115200
     config_SPI(); // Configure hardware SPI module
- 
+ 	PinConfig();
 	playcnt=0;
 	play_flag=0;
 	SET_CS; // Disable 25Q32 SPI flash memory
-      
+	
+    LCD_4BIT();
+ 	waitms(1000);
+ 	LCDprint("TEST",2,1);
 	while(1)
-	{
+	{	
+		LCDprint("TEST",1,1);
+	
+		count=GetPeriod(100);
+		if(count>0)
+		{
+			T=(count*2.0)/(SYSCLK*100.0);
+			f=1/T;
+			printf("f=%fHz, Count=%ld        \r", f, count);
+
+		}
+		else
+		{
+			printf("NO SIGNAL                     \r");
+		}
+		waitms(200);
+  
+
+
 		c=uart_getc();
 		if(c=='#')
 		{
