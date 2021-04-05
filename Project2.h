@@ -16,6 +16,7 @@
 #define LCD_D6  LATBbits.LATB4
 #define LCD_D7  LATAbits.LATA4
 //==================================================
+#define  SW1    PORTBbits.RB15
 
 #pragma config FNOSC = FRCPLL       // Internal Fast RC oscillator (8 MHz) w/ PLL
 #pragma config FPLLIDIV = DIV_2     // Divide FRC before PLL (now 4 MHz)
@@ -520,7 +521,16 @@ void LCDprint(char * string, unsigned char line, int clear)
 
 void PinConfig()
 {
+    ANSELB &= ~(1<<5); // Set RB5 as a digital I/O
+    TRISB |= (1<<5);   // configure pin RB5 as input
+    CNPUB |= (1<<5);   // Enable pull-up resistor for RB5
+ 
+	waitms(50);
 
+    CFGCON = 0;
+	TRISBbits.TRISB6 = 0;
+	LATBbits.LATB6 = 0;	
+	INTCONbits.MVEC = 1;
     
     //LCD OUTPUTS
     TRISBbits.TRISB13=0;
@@ -532,6 +542,47 @@ void PinConfig()
     TRISAbits.TRISA3=0;
     TRISAbits.TRISA4=0;
 
-   
+
+    ANSELBbits.ANSB15 = 0;
+    TRISBbits.TRISB15=1;
+       
+    CNPUBbits.CNPUB15 = 1; 
+ 
 }
 
+
+
+void SW1_Check(int* state)
+{
+    if(SW1==1) return ;
+	else  waitms(20);
+	if(SW1==1) return ;
+    
+	while(SW1==0);
+
+    if(*state<3) (*state)++;
+    else *state = 0;
+
+    return;
+ 
+}
+
+
+void Initiate()
+{
+  
+    UART2Configure(115200);  // Configure UART2 for a baud rate of 115200
+	PinConfig();
+	Init_pwm(); // pwm output used to implement DAC
+	SetupTimer1(); // The ISR for this timer playsback the sound
+    config_SPI(); // Configure hardware SPI module
+ 
+	playcnt=0;
+	play_flag=0;
+	SET_CS; // Disable 25Q32 SPI flash memory
+	
+    LCD_4BIT();
+ 	waitms(20);
+ 	
+
+}
