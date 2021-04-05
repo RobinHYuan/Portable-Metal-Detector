@@ -36,6 +36,10 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 - Auto-adjustable-Backlight LCD is working
 - 555 timer-cirucit is added to measure capacitance
 
+**2021-04-05 ; 16:09:34; Monday**
+- Push-button-detecting function is added
+- The menu nevigating system is working 
+
 ------------
 ### LCD Pin Assignments:
 
@@ -47,6 +51,8 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 #define LCD_D6 &nbsp; LATBbits.LATB4\
 #define LCD_D7 &nbsp; LATAbits.LATA4
 
+### Schematic：
+<img src="https://user-images.githubusercontent.com/68177491/113637598-d9fd1700-9629-11eb-8bec-417f3ce2a77f.jpg" width="2204/4" height="2904/4"/>
 
 ### Breadboard Layout:
 <img src="https://user-images.githubusercontent.com/68177491/113523138-d6e72580-955a-11eb-8dd0-a58f9840dbe7.jpg" width="521" height="391"/>
