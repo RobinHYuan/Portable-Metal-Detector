@@ -36,6 +36,18 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 - Auto-adjustable-Backlight LCD is working
 - 555 timer-cirucit is added to measure capacitance
 
+------------
+### LCD Pin Assignments:
+
+#define LCD_RS &nbsp; LATBbits.LATB13\
+#define LCD_RW &nbsp;LATBbits.LATB12\
+#define LCD_E  &nbsp; &nbsp; &nbsp;LATBbits.LATB10\
+#define LCD_D4 &nbsp; LATAbits.LATA2\
+#define LCD_D5 &nbsp; LATAbits.LATA3\
+#define LCD_D6 &nbsp; LATBbits.LATB4\
+#define LCD_D7 &nbsp; LATAbits.LATA4
+
+
 ### Breadboard Layout:
 <img src="https://user-images.githubusercontent.com/68177491/113523138-d6e72580-955a-11eb-8dd0-a58f9840dbe7.jpg" width="521" height="391"/>
 
