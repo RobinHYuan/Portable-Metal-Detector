@@ -49,8 +49,8 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 #define LCD_D4 &nbsp; LATAbits.LATA2\
 #define LCD_D5 &nbsp; LATAbits.LATA3\
 #define LCD_D6 &nbsp; LATBbits.LATB4\
-#define LCD_D7 &nbsp; LATAbits.LATA4
-
+#define LCD_D7 &nbsp; LATAbits.LATA4\
+#define  SW1    PORTBbits.RB15
 ### Schematic：
 <img src="https://user-images.githubusercontent.com/68177491/113637598-d9fd1700-9629-11eb-8bec-417f3ce2a77f.jpg" width="551" height="726"/>
 
