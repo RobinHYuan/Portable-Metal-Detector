@@ -17,6 +17,8 @@
 #define LCD_D7  LATAbits.LATA4
 //==================================================
 #define  SW1    PORTBbits.RB15
+#define  SW2    PORTBbits.RB2
+
 
 #pragma config FNOSC = FRCPLL       // Internal Fast RC oscillator (8 MHz) w/ PLL
 #pragma config FPLLIDIV = DIV_2     // Divide FRC before PLL (now 4 MHz)
@@ -543,10 +545,13 @@ void PinConfig()
     TRISAbits.TRISA4=0;
 
 
-    ANSELBbits.ANSB15 = 0;
+    ANSELBbits.ANSB15= 0;
     TRISBbits.TRISB15=1;
-       
-    CNPUBbits.CNPUB15 = 1; 
+    CNPUBbits.CNPUB15= 1; 
+
+    ANSELBbits.ANSB2=0;
+    TRISBbits.TRISB2=1;
+    CNPUBbits.CNPUB2=1; 
  
 }
 
@@ -585,4 +590,16 @@ void Initiate()
  	waitms(20);
  	
 
+}
+
+int SW2_Check()
+{
+    if(SW2==1) return 0;
+	else  waitms(20);
+	if(SW2==1) return 0;
+    
+	while(SW2==0);
+
+    return 1;
+ 
 }
