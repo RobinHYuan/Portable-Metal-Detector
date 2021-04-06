@@ -31,7 +31,7 @@ int main()
 	Initiate();
 	
 	while(True)
-	{	
+	{		
 		count=GetPeriod(100);
 		f=1/((count*2.0)/(SYSCLK*100.0));
 		float f_ref=0;
@@ -131,10 +131,32 @@ int main()
 						if(difference<nf_l_metal_min_bound)
 						{			
 							LCDprint("    SMALL",2,1);
+								
+							Start_Playback(0x00c158,0x010f89-0x00c158);
+							while(play_flag);//Small
+							Start_Playback(0x2d,0x2f91-0x2d);
+							while(play_flag);//Non
+							Start_Playback(0x002f91,0x00799e -0x002f91);
+							while(play_flag);//Ferrous
+							Start_Playback(0x00799e,0x00c158-0x00799e);
+							while(play_flag);//Metal
+							Start_Playback(0x01e102,0x022cd9-0x01e102);
+							while(play_flag);//Found
 						}
 						else
 						{
 							LCDprint("    LARGE",2,1);
+							
+							Start_Playback(0x015ea6,0x01a46f-0x015ea6);
+							while(play_flag);//Large
+							Start_Playback(0x2d,0x2f91-0x2d);
+							while(play_flag);//Non
+							Start_Playback(0x002f91,0x00799e -0x002f91);
+							while(play_flag);//Ferrous
+							Start_Playback(0x00799e,0x00c158-0x00799e);
+							while(play_flag);//Metal
+							Start_Playback(0x01e102,0x022cd9-0x01e102);
+							while(play_flag);//Found
 						}
 					}
 					else
@@ -142,16 +164,42 @@ int main()
 						if(difference>f_s_metal_min_bound)
 						{
 							LCDprint("No Metal Found",1,1);
+							
+							Start_Playback(0x01a46f,0x01e102-0x01a46f);
+							while(play_flag);//No
+							Start_Playback(0x00799e,0x00c158-0x00799e);
+							while(play_flag);//Metal
+							Start_Playback(0x01e102,0x022cd9-0x01e102);
+							while(play_flag);//Found
 						}
-						else
-						{	LCDprint("Ferrous Metal",1,1);
+						else	
+						{	
+							LCDprint("Ferrous Metal",1,1);
+							
 							if(difference>f_l_metal_min_bound)
 							{
 								LCDprint("    SMALL",2,1);
+								
+								Start_Playback(0x00c158,0x010f89-0x00c158);
+								while(play_flag);//Small
+								Start_Playback(0x002f91,0x00799e -0x002f91);
+								while(play_flag);//Ferrous
+								Start_Playback(0x00799e,0x00c158-0x00799e);
+								while(play_flag);//Metal
+								Start_Playback(0x01e102,0x022cd9-0x01e102);
+								while(play_flag);//Found
 							}
 							else
 							{
 								LCDprint("    LARGE",2,1);
+								Start_Playback(0x015ea6,0x01a46f-0x015ea6);
+								while(play_flag);//Large
+								Start_Playback(0x002f91,0x00799e -0x002f91);
+								while(play_flag);//Ferrous
+								Start_Playback(0x00799e,0x00c158-0x00799e);
+								while(play_flag);//Metal
+								Start_Playback(0x01e102,0x022cd9-0x01e102);
+								while(play_flag);//Found
 							
 							}
 						}
