@@ -14,7 +14,7 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 
 ------------
 ### Features List:
-- [ ] Inductance and Capacitance Meter
+- [x] Inductance and Capacitance Meter
 
 - [x] Auto-adjustable-Backlight LCD
 
@@ -42,6 +42,10 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 
 **2021-04-05 ; 22:02:46; Monday**
 - It can now detect if there is any small/large and ferrous/non-ferrous metal inside the coil
+
+**2021-04-05 ; 01:55:51; Tuesday**
+- Voice output system is working
+- Inductance and capacitance meter is added
 ------------
 ### LCD Pin Assignments:
 
