@@ -557,18 +557,18 @@ void PinConfig()
 
 
 
-void SW1_Check(int* state)
+int SW1_Check(int* state)
 {
-    if(SW1==1) return ;
+    if(SW1==1) return 0;
 	else  waitms(20);
-	if(SW1==1) return ;
+	if(SW1==1) return 0;
     
 	while(SW1==0);
 
     if(*state<3) (*state)++;
     else *state = 0;
 
-    return;
+    return 1;
  
 }
 
@@ -602,4 +602,22 @@ int SW2_Check()
 
     return 1;
  
+}
+float avg_frequency()
+{   
+    int index = 0;
+    float f_result = 0, count=0, f=0;
+    index=0; f_result=0;
+		
+
+	while( index<49)
+	{
+		count=GetPeriod(100);
+		f=1/((count*2.0)/(SYSCLK*100.0));
+	    f_result+=f;
+		index++;
+	}
+
+	f_result=f_result/50.0;
+    return f_result;
 }

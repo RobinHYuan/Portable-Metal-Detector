@@ -8,6 +8,7 @@
 #include <sys/attribs.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "project2.h"
 
 #define True 1
@@ -15,7 +16,9 @@
 #define nf_l_metal_min_bound 200
 #define f_s_metal_min_bound -2
 #define f_l_metal_min_bound -40
-
+#define C1 4.75e-9
+#define C2 95.3e-9
+#define R  993
 int main()
 {
     unsigned char c;
@@ -25,8 +28,8 @@ int main()
 	char buffer [16];
 	long int count;
 	int state =0,index;
-	float f ,capacitance=0,inductance=0,f_ref=0,f_result=0,difference;
-	float f_initial [100], f_end[100];
+	float f ,capacitance=0,inductance=0,f_ref=0,f_result=0,difference,CT;
+
 
 	Initiate();
 	
@@ -44,16 +47,34 @@ int main()
 			break;
 			
 			case 2:
+					
 				LCDprint("Capaciatnce:",1,1);
-				sprintf(buffer,"%.1f pF",capacitance);
-				LCDprint(buffer,2,1);
+				LCDprint("",2,1);
+				f_result=avg_frequency();
+				capacitance=1.44/(6000.0*f)*1000000;		
+
+				LCDprint("               F",2,1);
+				LCDprint("              \xf9",2,0);
+				sprintf(buffer,"%.3f",capacitance);
+				LCDprint(buffer,2,0);
+				
+				while(!SW1_Check(&state));
+				state=3;
 			break;
 		
 		
 			case 3:
 				LCDprint("Inductance:",1,1);
+				LCDprint("",2,1);
+				f_result=avg_frequency();
 				sprintf(buffer,"%.1f mH",inductance);
-				LCDprint(buffer,2,1);
+				CT=C1*C2/(C1+C2);
+				inductance=1.0/((4*3.14159265359*3.14159265359*f_result*f_result)*CT);
+				inductance*=1000;
+				sprintf(buffer,"%.3f mH",inductance);
+				LCDprint(buffer,2,0);
+				while(!SW1_Check(&state));
+				state=9;
 			break;
 			
 			case 1:
@@ -79,7 +100,6 @@ int main()
 					{
 						count=GetPeriod(100);
 						f=1/((count*2.0)/(SYSCLK*100.0));
-						f_initial[index] = f;
 						waitms(40);
 						f_ref+=f;
 						index++;
@@ -110,7 +130,6 @@ int main()
 					{
 						count=GetPeriod(100);
 						f=1/((count*2.0)/(SYSCLK*100.0));
-						f_end[index] = f;
 						waitms(40);
 						f_result+=f;
 						index++;
