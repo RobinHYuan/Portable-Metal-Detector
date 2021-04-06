@@ -39,7 +39,7 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 **2021-04-05 ; 16:09:34; Monday**
 - Push-button-detecting function is added
 - The menu nevigating system is working 
-- 
+
 **2021-04-05 ; 22:02:46; Monday**
 - It can now detect if there is any small/large and ferrous/non-ferrous metal inside the coil
 ------------
