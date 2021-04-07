@@ -73,7 +73,7 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 <img src="https://user-images.githubusercontent.com/68177491/113637598-d9fd1700-9629-11eb-8bec-417f3ce2a77f.jpg" width="551" height="726"/>
 
 ### Breadboard Layout:
-<img src="https://user-images.githubusercontent.com/68177491/113523138-d6e72580-955a-11eb-8dd0-a58f9840dbe7.jpg" width="521" height="391"/>
+<img src="https://user-images.githubusercontent.com/68177491/113850695-943a6e80-974f-11eb-941b-8a12ae64d914.jpg" width="521" height="391"/>
 
 ------------
 ### Matou Sakura is the best girl:
