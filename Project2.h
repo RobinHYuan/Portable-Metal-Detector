@@ -10,7 +10,7 @@
 #define LCD_RS  LATBbits.LATB13
 #define LCD_RW  LATBbits.LATB12
 #define LCD_E   LATBbits.LATB10
-
+#define LCD_E2  LATBbits.LATB9
 #define LCD_D4  LATAbits.LATA2
 #define LCD_D5  LATAbits.LATA3
 #define LCD_D6  LATBbits.LATB4
@@ -18,7 +18,8 @@
 //==================================================
 #define  SW1    PORTBbits.RB15
 #define  SW2    PORTBbits.RB2
-
+#define DHT11_OUT LATBbits.LATB3
+#define DHT11     PORTBbits.RB3
 
 #pragma config FNOSC = FRCPLL       // Internal Fast RC oscillator (8 MHz) w/ PLL
 #pragma config FPLLIDIV = DIV_2     // Divide FRC before PLL (now 4 MHz)
@@ -125,7 +126,7 @@ long int GetPeriod (int n)
 {
 	int i;
 	unsigned int saved_TCNT1a, saved_TCNT1b;
-	
+		__builtin_disable_interrupts(); 
     _CP0_SET_COUNT(0); // resets the core timer count
 	while (PIN_PERIOD!=0) // Wait for square wave to be 0
 	{
@@ -150,7 +151,7 @@ long int GetPeriod (int n)
 			if(_CP0_GET_COUNT() > (SYSCLK/4)) return 0;
 		}
 	}
-
+	__builtin_enable_interrupts(); 
 	return  _CP0_GET_COUNT();
 }
 
@@ -405,7 +406,36 @@ void get_ulong(unsigned long * lptr)
 
 
 //==================================================
-
+void Timer3us(unsigned char t) 
+{
+     T3CON = 0x8000; // enable Timer4, source PBCLK, 1:1 prescaler
+ 
+    // delay 100us per loop until less than 100us remain
+    while( t >= 100)
+    {
+        t-=100;
+        TMR4 = 0;
+        while( TMR4 < SYSCLK/10000);
+    }
+ 
+    // delay 10us per loop until less than 10us remain
+    while( t >= 10)
+    {
+        t-=10;
+        TMR4 = 0;
+        while( TMR4 < SYSCLK/100000);
+    }
+ 
+    // delay 1us per loop until finished
+    while( t > 0)
+    {
+        t--;
+        TMR4 = 0;
+        while( TMR4 < SYSCLK/1000000);
+    }
+    // turn off Timer4 so function is self-contained
+    T3CONCLR = 0x8000;
+}
 
 void Timer4us(unsigned char t) 
 {
@@ -453,6 +483,12 @@ void LCD_pulse (void)
 	LCD_E=0;
 }
 
+void LCD_pulse2 (void)
+{
+	LCD_E2 =1;
+    Timer4us(40);
+	LCD_E2 =0;
+}
 
 
 void LCD_byte (unsigned char x)
@@ -481,10 +517,43 @@ void LCD_byte (unsigned char x)
    LCD_pulse();
 
 }
+
+void LCD_byte2 (unsigned long int x)
+{
+
+   LCD_D7=x & 0x80 ? 1 : 0;
+
+   LCD_D6=x & 0x40 ? 1 : 0;
+
+   LCD_D5=x & 0x20 ? 1 : 0;
+
+   LCD_D4=x & 0x10 ? 1 : 0;
+
+   LCD_pulse2();
+
+   Timer4us(40);
+
+   LCD_D7=x & 0x08 ? 1 : 0;
+
+   LCD_D6=x & 0x04 ? 1 : 0;
+
+   LCD_D5=x & 0x02 ? 1 : 0;
+
+   LCD_D4=x & 0x01 ? 1 : 0;
+
+   LCD_pulse2();
+
+}
 void WriteData (unsigned char x)
 {
 	LCD_RS=1;
 	LCD_byte(x);
+	waitms1(2);
+}
+void WriteData2 (unsigned long int x)
+{
+	LCD_RS=1;
+	LCD_byte2(x);
 	waitms1(2);
 }
 
@@ -494,7 +563,12 @@ void WriteCommand (unsigned char x)
 	LCD_byte(x);
 	waitms1(5);
 }
-
+void WriteCommand2 (unsigned long int x)
+{
+	LCD_RS=0;
+	LCD_byte2(x);
+	waitms1(5);
+}
 void LCD_4BIT (void)
 {
 	LCD_E=0; // Resting state of LCD's enable is zero
@@ -512,6 +586,22 @@ void LCD_4BIT (void)
 	waitms1(20); // Wait for clear screen command to finsih.
 }
 
+void LCD_4BIT2 (void)
+{
+	LCD_E2=0; // Resting state of LCD's enable is zero
+	LCD_RW=0; // We are only writing to the LCD in this program
+	waitms1(20);
+	// First make sure the LCD is in 8-bit mode and then change to 4-bit mode
+	WriteCommand2(0x33);
+	WriteCommand2(0x33);
+	WriteCommand2(0x32); // Change to 4-bit mode
+
+	// Configure the LCD
+	WriteCommand2(0x28);
+	WriteCommand2(0x0c);
+	WriteCommand2(0x01); // Clear screen command (takes some time)
+	waitms1(20); // Wait for clear screen command to finsih.
+}
 void LCDprint(char * string, unsigned char line, int clear)
 {
 	int j;
@@ -520,6 +610,35 @@ void LCDprint(char * string, unsigned char line, int clear)
 	for(j=0; string[j]!=0; j++)	WriteData(string[j]);// Write the message
 	if(clear) for(; j<CHARS_PER_LINE; j++) WriteData(' '); // Clear the rest of the line
 }
+
+void LCDprint2(char * string, int line, int clear)
+{   
+  
+	int j;
+    switch(line)
+    {
+        case 1:
+            WriteCommand2(0x80);
+        break;
+
+        case 2:
+            WriteCommand2(0xc0);
+        break;
+
+        case 3:
+             WriteCommand2(0x90);
+        break;
+        case 4:
+             WriteCommand2(0xd0);
+        break;
+
+    }
+	waitms1(5);
+	for(j=0; string[j]!=0; j++)	WriteData2(string[j]);// Write the message
+	if(clear) for(; j<CHARS_PER_LINE; j++) WriteData2(' '); // Clear the rest of the line
+    waitms1(20);
+}
+
 
 void PinConfig()
 {
@@ -538,6 +657,7 @@ void PinConfig()
     TRISBbits.TRISB13=0;
     TRISBbits.TRISB12=0;
     TRISBbits.TRISB10=0;
+    TRISBbits.TRISB9=0;
     TRISBbits.TRISB4=0;
 
     TRISAbits.TRISA2=0;
@@ -552,7 +672,9 @@ void PinConfig()
     ANSELBbits.ANSB2=0;
     TRISBbits.TRISB2=1;
     CNPUBbits.CNPUB2=1; 
- 
+   
+    ANSELBbits.ANSB3=0;
+    CNPUBbits.CNPUB3=1; 
 }
 
 
@@ -565,7 +687,7 @@ int SW1_Check(int* state)
     
 	while(SW1==0);
 
-    if(*state<3) (*state)++;
+    if(*state<5) (*state)++;
     else *state = 0;
 
     return 1;
@@ -575,9 +697,7 @@ int SW1_Check(int* state)
 
 void Initiate()
 {
-  
-    UART2Configure(115200);  // Configure UART2 for a baud rate of 115200
-	PinConfig();
+  	PinConfig();
 	Init_pwm(); // pwm output used to implement DAC
 	SetupTimer1(); // The ISR for this timer playsback the sound
     config_SPI(); // Configure hardware SPI module
@@ -585,7 +705,9 @@ void Initiate()
 	playcnt=0;
 	play_flag=0;
 	SET_CS; // Disable 25Q32 SPI flash memory
-	
+
+	LCD_4BIT2();
+    waitms(20);
     LCD_4BIT();
  	waitms(20);
  	
@@ -621,3 +743,62 @@ float avg_frequency()
 	f_result=f_result/50.0;
     return f_result;
 }
+
+
+
+void Initiate_DHT11()			
+{
+    TRISBbits.TRISB3=0;
+	CNPUBbits.CNPUB3=1;
+    waitms(50);
+	DHT11_OUT = 0;		
+	waitms(20);	
+	DHT11_OUT = 1;		
+	
+	return;
+}
+
+void Verify()
+{
+    TRISBbits.TRISB3=1;
+	while(DHT11==1);
+	while(DHT11==0);
+
+	return;
+}
+int Receive_data()		
+{   TRISBbits.TRISB3=1;
+	int dat=0,i;	
+	for (i=0; i<8; i++)
+	{
+		while(DHT11==0);
+		Timer4us(30);
+
+		if(DHT11 == 1)	
+			dat = (dat<<1)|(0x01);
+		else	
+			dat = (dat<<1);
+		while(DHT11==1);
+	}
+	return dat;
+}
+
+
+void DHT11_Read(float* Temp, float* Hum)
+{
+	int Hum_High,Hum_Low,Temp_High,Temp_Low; 
+   
+	Initiate_DHT11();  
+	Timer4us(200);
+	Hum_High=Receive_data();	
+	Hum_Low=Receive_data();	    
+	Temp_High=Receive_data();	
+	Temp_Low=Receive_data();
+	
+	*Temp=Temp_High+Temp_Low/10.0;
+	*Hum=Hum_High+Hum_Low/10.0;
+	
+	return;
+}
+
+

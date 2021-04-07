@@ -19,6 +19,39 @@
 #define C1 4.75e-9
 #define C2 95.3e-9
 #define R  993
+
+#define  IR    PORTBbits.RB7
+
+int state=0;
+void __ISR(_EXTERNAL_0_VECTOR, IPL7AUTO) Ext0ISR(void)
+{	
+	int index=0;
+	int address[16], command[8];
+	
+	T1CONCLR = 0x8000;
+	T4CONCLR = 0x8000;
+	T2CONCLR = 0x8000;
+	IEC0bits.INT0IE = 0;
+
+	if(state<5) (state)++;
+    else state = 0;
+    waitms(200);
+     
+    IFS0bits.INT0IF = 0;  
+    IEC0bits.INT0IE = 1;
+    
+    T1CON = 0x8000;
+    T4CON = 0x8000;
+    T2CON = 0x8000;
+	
+	return;
+}
+
+
+
+
+
+
 int main()
 {
     unsigned char c;
@@ -26,21 +59,45 @@ int main()
     unsigned long start, nbytes;
     unsigned short crc;
 	char buffer [16];
-	long int count;
-	int state =0,index;
+	long int count=0;
+	int index;
 	float f ,capacitance=0,inductance=0,f_ref=0,f_result=0,difference,CT;
-
-
+  	float Temp_DHT11=0,Hum_DHT11=0;
+	char percent='%';
+	int i=0;
 	Initiate();
+	waitms(500);
+	
+	__builtin_disable_interrupts();   // disable interrupts
+     
+    INTCONbits.INT0EP = 0;   // interrupt triggers on negative edge    
+    IPC0bits.INT0IP = 7;     // EXT0 priority 7
+    IPC0bits.INT0IS = 0;     // EXT0 sub-priority 0
+    IFS0bits.INT0IF = 0;     // clear the interrupt flag
+    
+    IEC0bits.INT0IE = 1;     // enable interrupt on INT0
+   
+    INTCONbits.MVEC = 1;     //  Enable the multi vector interrupts
+
+    __builtin_enable_interrupts();   
+	
 	
 	while(True)
 	{		
-		count=GetPeriod(100);
-		f=1/((count*2.0)/(SYSCLK*100.0));
-		float f_ref=0;
+	
+
+        
+		
+		LCDprint2("WAITING...",1,1);
+		LCDprint2("  ",3,1);
+	
 		switch(state)
 		{
 			case 0:
+				__builtin_disable_interrupts(); 
+				count=GetPeriod(100);
+				f=1/((count*2.0)/(SYSCLK*100.0));
+				f_ref=0;
 				LCDprint("Frequency:",1,1);
 				sprintf(buffer,"%.1f Hz",f);
 				LCDprint(buffer,2,1);
@@ -57,13 +114,12 @@ int main()
 				LCDprint("              \xf9",2,0);
 				sprintf(buffer,"%.3f",capacitance);
 				LCDprint(buffer,2,0);
-				
-				while(!SW1_Check(&state));
-				state=3;
+				waitms(500);
 			break;
 		
 		
 			case 3:
+				
 				LCDprint("Inductance:",1,1);
 				LCDprint("",2,1);
 				f_result=avg_frequency();
@@ -73,8 +129,24 @@ int main()
 				inductance*=1000;
 				sprintf(buffer,"%.3f mH",inductance);
 				LCDprint(buffer,2,0);
-				while(!SW1_Check(&state));
-				state=9;
+				waitms(500);
+			break;
+
+			case 4:
+			
+				DHT11_Read(&Temp_DHT11, &Hum_DHT11);
+				LCDprint("Temperature:",1,1);
+				LCDprint("              C",2,1);
+				sprintf(buffer,"Current: %.1f\xdf",Temp_DHT11);  
+				LCDprint(buffer,2,0);
+				waitms(1000);
+			break;
+			
+			case 5:
+				LCDprint("Humidity:",1,1);
+				sprintf(buffer,"Current: %.1f%c",Hum_DHT11,percent);
+				LCDprint(buffer,2,1);
+
 			break;
 			
 			case 1:
