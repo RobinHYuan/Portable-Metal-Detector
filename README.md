@@ -18,6 +18,12 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 
 - [x] Auto-adjustable-Backlight LCD
 
+- [x] DHT11 Temperature Sensor
+
+- [x] Dual LCD display
+
+- [x] IR Remote Control
+
 - [ ] Prototype Board
 
 ------------
@@ -43,9 +49,15 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 **2021-04-05 ; 22:02:46; Monday**
 - It can now detect if there is any small/large and ferrous/non-ferrous metal inside the coil
 
-**2021-04-05 ; 01:55:51; Tuesday**
+**2021-04-06 ; 01:55:51; Tuesday**
 - Voice output system is working
 - Inductance and capacitance meter is added
+
+
+**2021-04-07 ; 02:59:08; Tuesday**
+- An external ISR coded to drive the IR receiver
+- Second LCD display is added
+- DHT11 temperature and humidity sensor is working
 ------------
 ### LCD Pin Assignments:
 
