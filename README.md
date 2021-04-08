@@ -68,17 +68,17 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 ------------
 ### LCD Pin Assignments:
 
-#define LCD_RS&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; LATBbits.LATB13\
-#define LCD_RW &nbsp; &nbsp; &nbsp; LATBbits.LATB12\
-#define LCD_E  &nbsp;  &nbsp; &nbsp; &nbsp; LATBbits.LATB10\
-#define LCD_D4 &nbsp; &nbsp; &nbsp; &nbsp;LATAbits.LATA2\
-#define LCD_D5 &nbsp; &nbsp; &nbsp; &nbsp;LATAbits.LATA3\
-#define LCD_D6 &nbsp; &nbsp; &nbsp; &nbsp;LATBbits.LATB4\
-#define LCD_D7 &nbsp; &nbsp; &nbsp; &nbsp;LATAbits.LATA4\
-#define SW1  &nbsp;    &nbsp;   &nbsp; PORTBbits.RB15\
-#define SW2  &nbsp;    &nbsp;   &nbsp;  PORTBbits.RB2\
-#define DHT11_OUT&nbsp; LATBbits.LATB3\
-#define DHT11   &nbsp;  &nbsp;   &nbsp;PORTBbits.RB3
+#define LCD_RS&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; LATBbits.LATB13\
+#define LCD_RW&nbsp; &nbsp; &nbsp; &nbsp; LATBbits.LATB12\
+#define LCD_E&nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;&nbsp;LATBbits.LATB10\
+#define LCD_D4&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;LATAbits.LATA2\
+#define LCD_D5&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;LATAbits.LATA3\
+#define LCD_D6&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;LATBbits.LATB4\
+#define LCD_D7&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;LATAbits.LATA4\
+#define SW1&nbsp;  &nbsp;    &nbsp;&nbsp; &nbsp;PORTBbits.RB15\
+#define SW2&nbsp;  &nbsp;    &nbsp;&nbsp;  &nbsp;PORTBbits.RB2\
+#define DHT11_OUT&nbsp;&nbsp;LATBbits.LATB3\
+#define DHT11&nbsp;   &nbsp;  &nbsp;   &nbsp;PORTBbits.RB3
 
 
 ### Schematic：
