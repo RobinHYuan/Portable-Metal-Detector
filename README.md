@@ -66,7 +66,7 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 - Menu can diplay the current task
  
 ------------
-### LCD Pin Assignments:
+### Pin Assignments:
 
 #define LCD_RS&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; LATBbits.LATB13\
 #define LCD_RW&nbsp; &nbsp; &nbsp; &nbsp; LATBbits.LATB12\
