@@ -1,8 +1,3 @@
-// PIC32_Receiver.c:  This program implements a simple serial port
-// communication protocol to program, verify, and read SPI flash memories.  Since
-// the program was developed to store wav audio files, it also allows 
-// for the playback of said audio.  It is assumed that the wav sampling rate is
-// 22050Hz, 8-bit, mono.
 
 #include <XC.h>
 #include <sys/attribs.h>
