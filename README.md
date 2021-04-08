@@ -20,9 +20,11 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 
 - [x] DHT11 Temperature Sensor
 
-- [x] Dual LCD display
+- [x] Dual LCD Display Including a 16x4 LCD
 
-- [x] IR Remote Control
+- [x] IR Remote Control and Pushbutton COntrol
+
+- [x] User-friendly Menu Nevigation System 
 
 - [ ] Prototype Board
 
@@ -58,6 +60,11 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 - An external ISR coded to drive the IR receiver
 - Second LCD display is added
 - DHT11 temperature and humidity sensor is working
+
+**2021-04-08 ; 00:23:29; Wednesday**
+- We can nevigate the menu using a IR remote controller instead of pushbuttons
+- Menu can diplay the current task
+ 
 ------------
 ### LCD Pin Assignments:
 
