@@ -13,6 +13,7 @@ Robin Yuan, 88011879\
 Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 
 ------------
+
 ### Features List:
 - [x] Inductance and Capacitance Meter
 
@@ -27,6 +28,9 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 - [x] User-friendly Menu Nevigation System 
 
 - [ ] Prototype Board
+
+### Preview:
+https://drive.google.com/file/d/1-iZb56TVcO2iSUi0TGHbikE_OU9lY_tn/view?usp=sharing
 
 ------------
 ### Update History:
@@ -82,7 +86,7 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 #define DHT11 &nbsp;   &nbsp;  &nbsp; &nbsp;  &nbsp;  PORTBbits.RB3
 
 
-### Schematic：
+### Schematic (OUTDATED)：
 <img src="https://user-images.githubusercontent.com/68177491/113637598-d9fd1700-9629-11eb-8bec-417f3ce2a77f.jpg" width="551" height="726"/>
 
 ### Breadboard Layout:
