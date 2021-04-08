@@ -66,7 +66,7 @@ https://drive.google.com/file/d/1-iZb56TVcO2iSUi0TGHbikE_OU9lY_tn/view?usp=shari
 - DHT11 temperature and humidity sensor is working
 
 **2021-04-08 ; 00:23:29; Wednesday**
-- We can nevigate the menu using a IR remote controller instead of pushbuttons
+- We can nevigate the menu using an IR remote controller instead of pushbuttons
 - Menu can diplay the current task
  
 ------------
