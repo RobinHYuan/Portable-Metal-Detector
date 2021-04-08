@@ -75,10 +75,10 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 #define LCD_D5&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;LATAbits.LATA3\
 #define LCD_D6&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;LATBbits.LATB4\
 #define LCD_D7&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;LATAbits.LATA4\
-#define SW1&nbsp;  &nbsp;    &nbsp;&nbsp; &nbsp;PORTBbits.RB15\
-#define SW2&nbsp;  &nbsp;    &nbsp;&nbsp;  &nbsp;PORTBbits.RB2\
+#define SW1  &nbsp;  &nbsp;  &nbsp;    &nbsp;  &nbsp;&nbsp;PORTBbits.RB15\
+#define SW2  &nbsp;  &nbsp;  &nbsp;    &nbsp;  &nbsp;&nbsp;PORTBbits.RB2\
 #define DHT11_OUT&nbsp;&nbsp;LATBbits.LATB3\
-#define DHT11&nbsp;   &nbsp;  &nbsp;   &nbsp;PORTBbits.RB3
+#define DHT11&nbsp;   &nbsp;  &nbsp; &nbsp;  &nbsp;PORTBbits.RB3
 
 
 ### Schematic：
