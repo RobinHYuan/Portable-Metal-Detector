@@ -8,7 +8,7 @@
 #include <sys/attribs.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
+#include <string.h>
 #include "project2.h"
 
 #define True 1
@@ -22,7 +22,7 @@
 
 #define  IR    PORTBbits.RB7
 
-int state=0;
+int state=0,depth=0,flag=0;
 void __ISR(_EXTERNAL_0_VECTOR, IPL7AUTO) Ext0ISR(void)
 {	
 	int index=0;
@@ -32,9 +32,20 @@ void __ISR(_EXTERNAL_0_VECTOR, IPL7AUTO) Ext0ISR(void)
 	T4CONCLR = 0x8000;
 	T2CONCLR = 0x8000;
 	IEC0bits.INT0IE = 0;
-
-	if(state<5) (state)++;
-    else state = 0;
+	
+	if(state == 1 )
+    {
+    	flag++;
+    }
+    
+	if(depth==0 &&flag!=1)
+	{
+		if(state<5) (state)++;
+    	else state = 0;
+    	
+    }
+    
+    
     waitms(200);
      
     IFS0bits.INT0IF = 0;  
@@ -64,7 +75,7 @@ int main()
 	float f ,capacitance=0,inductance=0,f_ref=0,f_result=0,difference,CT;
   	float Temp_DHT11=0,Hum_DHT11=0;
 	char percent='%';
-	int i=0;
+	int i=0,type=1;
 	Initiate();
 	waitms(500);
 	
@@ -86,13 +97,11 @@ int main()
 	{		
 	
 
-        
-		
-		LCDprint2("WAITING...",1,1);
-		LCDprint2("  ",3,1);
-	
+        LCD2printMenu(state, depth);
 		switch(state)
-		{
+		{	
+			depth=0;
+			
 			case 0:
 				__builtin_disable_interrupts(); 
 				count=GetPeriod(100);
@@ -102,7 +111,7 @@ int main()
 				sprintf(buffer,"%.1f Hz",f);
 				LCDprint(buffer,2,1);
 			break;
-			
+
 			case 2:
 					
 				LCDprint("Capaciatnce:",1,1);
@@ -152,16 +161,22 @@ int main()
 			case 1:
 				LCDprint("  PRESS SW2 TO",1,1);
 				LCDprint("  DETECT METAL",2,1);
-				if (SW2_Check())
+				waitms1(1500);
+				if(flag==1) {flag=0;state++;}
+				if (SW2_Check() || flag == 2)
 				{	
-					while(!SW2_Check())	
+					flag=0;
+					depth=1;
+					state=1;
+					LCD2printMenu(state, depth);
+					while(!(flag>=1) && !(SW2_Check() ))	
 					{
 						LCDprint("     Coil ",1,1);
 						LCDprint("Away From Metal",2,1);
-						waitms(1200);
+						waitms1(1200);
 						LCDprint("  PRESS SW2 TO",1,1);
 						LCDprint("    CALIBRATE",2,1);
-						waitms(1200);
+						waitms1(1200);
 					}	
 
 					LCDprint("  Calibrating",1,1);
@@ -178,12 +193,14 @@ int main()
 					}
 					f_ref=f_ref/100.0;
 					
+					depth=2;flag=0;
+					LCD2printMenu(state, depth);
 					LCDprint("Reference:",1,1);
 					sprintf(buffer,"%.1f Hz",f_ref);
 					LCDprint(buffer,2,1);
 					waitms(3000);
 					
-					while(!SW2_Check())	
+					while(!(flag>=1) && (!SW2_Check() ))	
 					{
 					
 						LCDprint("PLACE THE METAL",1,1);
@@ -207,7 +224,8 @@ int main()
 						index++;
 					}
 					f_result=f_result/100.0;
-					
+					depth=3;flag=0;
+					LCD2printMenu(state, depth);
 					sprintf(buffer,"Result:%.0f Hz",f_result);
 					LCDprint(buffer,1,1);
 					sprintf(buffer,"Ref:%.0f Hz",f_ref);
@@ -222,7 +240,7 @@ int main()
 						if(difference<nf_l_metal_min_bound)
 						{			
 							LCDprint("    SMALL",2,1);
-								
+							type=1;	
 							Start_Playback(0x00c158,0x010f89-0x00c158);
 							while(play_flag);//Small
 							Start_Playback(0x2d,0x2f91-0x2d);
@@ -237,7 +255,7 @@ int main()
 						else
 						{
 							LCDprint("    LARGE",2,1);
-							
+							type=2;
 							Start_Playback(0x015ea6,0x01a46f-0x015ea6);
 							while(play_flag);//Large
 							Start_Playback(0x2d,0x2f91-0x2d);
@@ -255,7 +273,7 @@ int main()
 						if(difference>f_s_metal_min_bound)
 						{
 							LCDprint("No Metal Found",1,1);
-							
+							type=0;
 							Start_Playback(0x01a46f,0x01e102-0x01a46f);
 							while(play_flag);//No
 							Start_Playback(0x00799e,0x00c158-0x00799e);
@@ -270,7 +288,7 @@ int main()
 							if(difference>f_l_metal_min_bound)
 							{
 								LCDprint("    SMALL",2,1);
-								
+								type=3;
 								Start_Playback(0x00c158,0x010f89-0x00c158);
 								while(play_flag);//Small
 								Start_Playback(0x002f91,0x00799e -0x002f91);
@@ -282,6 +300,7 @@ int main()
 							}
 							else
 							{
+								type=4;
 								LCDprint("    LARGE",2,1);
 								Start_Playback(0x015ea6,0x01a46f-0x015ea6);
 								while(play_flag);//Large
@@ -296,7 +315,35 @@ int main()
 						}
 				
 					}
-					while(1);
+						while(!(flag>=1) && (!SW2_Check() ))
+						{
+							LCDprint2("Details:",1,1);
+							LCDprint("  PRESS SW2 TO",1,1);
+							LCDprint("     EXIT",2,1);
+							switch(type)
+							{
+								case 0: LCDprint2("No Metal",2,1);
+								break;
+								case 1: LCDprint2("S-NF-Metal",2,1);
+								break;
+								case 2: LCDprint2("L-NF-Metal",2,1);
+								break;
+								case 3: LCDprint2("S-F-Metal",2,1);
+								break;
+								case 4: LCDprint2(":L-F-Metal",2,1);
+								break;
+							}
+							sprintf(buffer,"Result:%.0f Hz",f_result);
+							LCDprint2(buffer,3,1);
+							sprintf(buffer,"Ref:%.0f Hz",f_ref);
+							LCDprint2(buffer,4,1);
+							
+						}
+						while(!(flag>=1) && (!SW2_Check() ));
+						state=1;
+						depth=0;
+						LCD2printMenu(state, depth);
+						break;
 				}
 
 			break;
