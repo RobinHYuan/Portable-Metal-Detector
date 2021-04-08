@@ -69,7 +69,7 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 ### Pin Assignments:
 
 #define LCD_RS&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; LATBbits.LATB13\
-#define LCD_RW &nbsp; &nbsp; &nbsp; &nbsp; LATBbits.LATB12\
+#define LCD_RW&nbsp; &nbsp; &nbsp; &nbsp; LATBbits.LATB12\
 #define LCD_E &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;&nbsp; LATBbits.LATB10\
 #define LCD_E2 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;LATBbits.LATB9\
 #define LCD_D4&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;LATAbits.LATA2\
