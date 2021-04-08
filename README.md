@@ -68,14 +68,19 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 ------------
 ### LCD Pin Assignments:
 
-#define LCD_RS &nbsp; LATBbits.LATB13\
-#define LCD_RW &nbsp;LATBbits.LATB12\
-#define LCD_E  &nbsp; &nbsp; &nbsp;LATBbits.LATB10\
-#define LCD_D4 &nbsp; LATAbits.LATA2\
-#define LCD_D5 &nbsp; LATAbits.LATA3\
-#define LCD_D6 &nbsp; LATBbits.LATB4\
-#define LCD_D7 &nbsp; LATAbits.LATA4\
-#define  SW1    PORTBbits.RB15
+#define LCD_RS &nbsp;&nbsp; &nbsp;  &nbsp; &nbsp; LATBbits.LATB13\
+#define LCD_RW &nbsp; &nbsp; &nbsp; LATBbits.LATB12\
+#define LCD_E  &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;LATBbits.LATB10\
+#define LCD_D4 &nbsp; &nbsp; &nbsp; &nbsp;LATAbits.LATA2\
+#define LCD_D5 &nbsp; &nbsp; &nbsp; &nbsp;LATAbits.LATA3\
+#define LCD_D6 &nbsp; &nbsp; &nbsp; &nbsp;LATBbits.LATB4\
+#define LCD_D7 &nbsp; &nbsp; &nbsp; &nbsp;LATAbits.LATA4\
+#define SW1  &nbsp;    &nbsp;    PORTBbits.RB15\
+#define SW2  &nbsp;    &nbsp;   &nbsp; &nbsp;  PORTBbits.RB2\
+#define DHT11_OUT&nbsp; LATBbits.LATB3\
+#define DHT11   &nbsp;  PORTBbits.RB3
+
+
 ### Schematic：
 <img src="https://user-images.githubusercontent.com/68177491/113637598-d9fd1700-9629-11eb-8bec-417f3ce2a77f.jpg" width="551" height="726"/>
 
