@@ -1,3 +1,8 @@
+// PIC32_Receiver.c:  This program implements a simple serial port
+// communication protocol to program, verify, and read SPI flash memories.  Since
+// the program was developed to store wav audio files, it also allows 
+// for the playback of said audio.  It is assumed that the wav sampling rate is
+// 22050Hz, 8-bit, mono.
 
 #include <XC.h>
 #include <sys/attribs.h>
@@ -28,6 +33,7 @@ void __ISR(_EXTERNAL_0_VECTOR, IPL7AUTO) Ext0ISR(void)
 	T2CONCLR = 0x8000;
 	IEC0bits.INT0IE = 0;
 	
+
 	if(state == 1 )
     {
     	flag++;
@@ -73,7 +79,6 @@ int main()
 	int i=0,type=1;
 	Initiate();
 	waitms(500);
-	
 	__builtin_disable_interrupts();   // disable interrupts
      
     INTCONbits.INT0EP = 0;   // interrupt triggers on negative edge    
@@ -109,10 +114,10 @@ int main()
 
 			case 2:
 					
-				LCDprint("Capaciatnce:",1,1);
+				LCDprint("Capacitance:",1,1);
 				LCDprint("",2,1);
 				f_result=avg_frequency();
-				capacitance=1.44/(6000.0*f)*1000000;		
+				capacitance=1.44/(6000.0*f_result)*1000000;		
 
 				LCDprint("               F",2,1);
 				LCDprint("              \xf9",2,0);
