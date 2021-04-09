@@ -88,7 +88,7 @@ https://drive.google.com/file/d/1-iZb56TVcO2iSUi0TGHbikE_OU9lY_tn/view?usp=shari
 
 ### Schematic (OUTDATED)：
 <img src="https://user-images.githubusercontent.com/68177491/113637598-d9fd1700-9629-11eb-8bec-417f3ce2a77f.jpg" width="551" height="726"/>
-
+<img src="https://user-images.githubusercontent.com/68177491/114123439-2608bf80-98a7-11eb-91bd-a6ff7104265c.jpg" width="800" height="600"/>
 ### Breadboard Layout:
 <img src="https://user-images.githubusercontent.com/68177491/113850695-943a6e80-974f-11eb-941b-8a12ae64d914.jpg" width="521" height="391"/>
 
