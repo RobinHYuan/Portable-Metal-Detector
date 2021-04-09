@@ -27,7 +27,7 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 
 - [x] User-friendly Menu Nevigation System 
 
-- [ ] Prototype Board
+- [x] Prototype Board
 
 ### Preview:
 
@@ -62,15 +62,18 @@ Prototype Board: https://drive.google.com/file/d/1-kGT7yI_gWh4g1TP4VJDG7c39W3_VP
 - Inductance and capacitance meter is added
 
 
-**2021-04-07 ; 02:59:08; Tuesday**
+**2021-04-07 ; 02:59:08; Wednesday**
 - An external ISR coded to drive the IR receiver
 - Second LCD display is added
 - DHT11 temperature and humidity sensor is working
 
-**2021-04-08 ; 00:23:29; Wednesday**
+**2021-04-08 ; 00:23:29; Thurdsay
 - We can nevigate the menu using an IR remote controller instead of pushbuttons
 - Menu can diplay the current task
- 
+- 
+ **2021-04-09 ; 23:48:52; Thurdsay**
+- Prototype board is working
+
 ------------
 ### Pin Assignments:
 
