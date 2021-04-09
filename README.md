@@ -30,8 +30,10 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 - [ ] Prototype Board
 
 ### Preview:
+
 Breadboard: https://drive.google.com/file/d/1-iZb56TVcO2iSUi0TGHbikE_OU9lY_tn/view?usp=sharing
 Prototype Board: https://drive.google.com/file/d/1-kGT7yI_gWh4g1TP4VJDG7c39W3_VPlW/view?usp=sharing
+
 ------------
 ### Update History:
 **2021-04-03; 15:10:12; Saturday**
