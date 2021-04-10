@@ -16,9 +16,9 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 
 ### Features List:
 
-Our design incorporates many extra features in addition to the required ones. Inductances of  given inductors and capacitances of given capacitors can be measured, temperature/humidity can be measured, an IR control system allows for remote controlling, and the soldering onto the prototype board allows for a more robust and portble design. Two displays are used. The 16x2 LCD will display some data and the next step to be excuted by the operator; the 16x4 LCD, which uses a different instruction set, will display the menu and the current task that the microcontoller is working on, indicated by an arrow. The menu is rather user-friendly since the operator can choose to use either an IR-controller or the on board pushbuttons to control the system. You can use either of them to cycle throught the main menu or enter a function that contains multiple steps. Our system also has an auto-backlighting circuit so that users can interact with the system with ease in a dark environment
+Our design incorporates many extra features in addition to the required ones. Inductances of given inductors and capacitances of given capacitors can be measured, temperature/humidity can be measured, an IR control system allows for remote controlling, and the soldering onto the prototype board allows for a more robust and portable design. Two displays are used. The 16x2 LCD will display some data and the next step to be executed by the operator; the 16x4 LCD, which uses a different instruction set, will display the menu and the current task that the microcontroller is working on, indicated by an arrow. The menu is rather user-friendly since the operator can choose to use either an IR-controller or the onboard pushbuttons to control the system. You can use either of them to cycle through the main menu or enter a function that contains multiple steps. Our system also has an auto-backlighting circuit so that users can interact with the system with ease in a dark environment
 
-- [x] PIC32MX170F256B instead of PIC32MX130F064B is used providing a higher comuting speed
+- [x] PIC32MX170F256B instead of PIC32MX130F064B is used providing a higher computing speed
 
 - [x] Inductance Meter
 
