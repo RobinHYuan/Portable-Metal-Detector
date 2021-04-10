@@ -12,6 +12,9 @@ Jerry Shao, &nbsp;  84982321\
 Robin Yuan, 88011879\
 Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 
+### Note:
+
+For some reasons, our code shows up as CPP on github; however, all code is written in plain C.
 ------------
 
 ### Features List:
