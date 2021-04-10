@@ -34,7 +34,7 @@ Our design incorporates many extra features in addition to the required ones. In
 
 - [x] Prototype Board
 
-- [x] Custom-made and Spray-prainted Platform
+- [x] Custom-made and Spray-painted Platform
 
 - [x] PIC32MX170F256B instead of PIC32MX130F064B is used providing a higher computing speed
 
