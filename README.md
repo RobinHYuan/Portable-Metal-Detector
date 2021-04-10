@@ -14,7 +14,7 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 
 ### Note:
 
-For some reasons, our code shows up as CPP on github; however, all code is written in plain C.
+For some reasons, github says our code is written in CPP; however, all code is written in plain C.
 
 ------------
 
