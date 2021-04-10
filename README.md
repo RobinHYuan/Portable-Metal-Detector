@@ -16,7 +16,13 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 
 ### Features List:
 
-- [x] Inductance and Capacitance Meter
+Our design incorporates many extra features in addition to the required ones. Inductances of  given inductors and capacitances of given capacitors can be measured, temperature/humidity can be measured, an IR control system allows for remote controlling, and the soldering onto the prototype board allows for a more robust and portble design. Two displays are used. The 16x2 LCD will display some data and the next step to be excuted by the operator; the 16x4 LCD, which uses a different instruction set, will display the menu and the current task that the microcontoller is working on, indicated by an arrow. The menu is rather user-friendly since the operator can choose to use either an IR-controller or the on board pushbuttons to control the system. You can use either of them to cycle throught the main menu or enter a function that contains multiple steps. Our system also has an auto-backlighting circuit so that users can interact with the system with ease in a dark environment
+
+- [x] PIC32MX170F256B instead of PIC32MX130F064B is used providing a higher comuting speed
+
+- [x] Inductance Meter
+
+- [x] Capacitance Meter
 
 - [x] Auto-adjustable-Backlight LCD
 
@@ -24,14 +30,14 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 
 - [x] Dual LCD Display Including a 16x4 LCD
 
-- [x] IR Remote Control and Pushbutton COntrol
+- [x] IR Remote Control and Pushbutton Control System
 
-- [x] User-friendly Menu Nevigation System 
+- [x] User-friendly Menu Nevigation System
 
 - [x] Prototype Board
 
 ### Demo:
-https://drive.google.com/drive/folders/1txYuvcW4ZIB4csJmf6jO69IJDAkhAdMt?usp=sharing
+https://drive.google.com/drive/folders/1nN5XsBr7yZL9Dpnhs36p8P-CXMnHtnib?usp=sharing
 
 ### Preview:
 
