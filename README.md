@@ -15,6 +15,7 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 ------------
 
 ### Features List:
+
 - [x] Inductance and Capacitance Meter
 
 - [x] Auto-adjustable-Backlight LCD
@@ -28,6 +29,9 @@ Sean Fu, &nbsp;  &nbsp;   &nbsp;  25881012
 - [x] User-friendly Menu Nevigation System 
 
 - [x] Prototype Board
+
+### Demo:
+https://drive.google.com/drive/folders/1txYuvcW4ZIB4csJmf6jO69IJDAkhAdMt?usp=sharing
 
 ### Preview:
 
